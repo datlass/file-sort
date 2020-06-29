@@ -3,6 +3,7 @@ from os.path import isfile, join
 import os
 from shutil import move
 
+
 # This script seperates files and puts them in their respective file type folder
 
 # Project inspiration and assistance:
@@ -66,7 +67,7 @@ def sort_folder(mypath):
             move(temp_location, respective_folder)
     print("Finished!")
 
-#Added a comment to test out the feature of committing
+# Added a comment to test out the feature of committing
 
 # Last element of a list test:
 # test = "meme.5.zip"
