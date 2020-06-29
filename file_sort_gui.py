@@ -1,4 +1,11 @@
+from tkinter import *
 
-print("Insert file path to organize")
+root = Tk()  # create window
 
-print("This branch adds this new print statement")
+# Label widget
+myLabel = Label(root, text="Hello World")
+myButton = Button(root, text="Click me").pack()
+
+myLabel.grid(row=0,column=0)
+
+root.mainloop()
