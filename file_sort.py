@@ -70,7 +70,7 @@ def sort_folder(mypath):
         print("Finished!")
     else:
         print("Directory does not exist")
-    messagebox.showerror("Error","Directory does not exist")
+        messagebox.showerror("Error","Directory does not exist")
 
 # Added a comment to test out the feature of committing
 

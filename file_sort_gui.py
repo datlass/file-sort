@@ -4,9 +4,25 @@ from file_sort import sort_folder
 root = Tk()  # create window called root
 root.title("Dimas's Organizing Program")
 
+# Gets the requested values of the height and widht.
+windowWidth = root.winfo_reqwidth()
+windowHeight = root.winfo_reqheight()
+print("Width",windowWidth,"Height",windowHeight)
+
+# Gets both half the screen width/height and window width/height
+positionRight = int(root.winfo_screenwidth()/2 - windowWidth/2)
+positionDown = int(root.winfo_screenheight()/3 - windowHeight/2)
+
+# Positions the window in the center of the page.
+root.geometry("+{}+{}".format(positionRight, positionDown))
+
+#Constant x padding var
 widthx = 25
+
+#Adds title to the python window
 my_title = Label(root,text="Insert directory to organize")
 my_title.grid(row=0,column=0)
+
 e = Entry()
 e.grid(row = 1,column = 0,padx = widthx)
 e.insert(0,"Input directory here")
