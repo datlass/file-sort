@@ -2,6 +2,7 @@ from os import listdir
 from os.path import isfile, join
 import os
 from shutil import move
+from tkinter import messagebox
 
 
 # This script seperates files and puts them in their respective file type folder
@@ -68,8 +69,8 @@ def sort_folder(mypath):
                 move(temp_location, respective_folder)
         print("Finished!")
     else:
-        print("directory does not exist")
-
+        print("Directory does not exist")
+    messagebox.showerror("Error","Directory does not exist")
 
 # Added a comment to test out the feature of committing
 
