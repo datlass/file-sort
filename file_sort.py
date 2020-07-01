@@ -59,16 +59,14 @@ def sort_folder(mypath):
                 print(respective_folder)
                 print("")
                 try:
-                move(temp_location, respective_folder)
+                    move(temp_location, respective_folder)
                 except:
-                messagebox.showerror("Error", "Files are overlapping or something else idk")
+                    messagebox.showerror("Error", "Files are overlapping or something else idk")
 
-        print("Finished!")
+        print("Finished the sort! hopefully")
     else:
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
-
-sort_folder("/Users/HomeFolder/Desktop/Python Organize test")
 
 def unpack_all(mypath):
     if os.path.isdir(mypath):
@@ -79,3 +77,4 @@ def unpack_all(mypath):
 # print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
 
 # unpack_all("/Users/HomeFolder/Desktop/Python Organize test")
+print(listdir("/Users/HomeFolder/Desktop/"))
