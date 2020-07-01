@@ -77,4 +77,3 @@ def unpack_all(mypath):
 # print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
 
 # unpack_all("/Users/HomeFolder/Desktop/Python Organize test")
-print(listdir("/Users/HomeFolder/Desktop/"))
