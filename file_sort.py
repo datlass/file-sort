@@ -10,34 +10,26 @@ from tkinter import messagebox
 # Project inspiration and assistance:
 # https://medium.com/better-programming/how-i-organise-my-downloads-folder-with-python-6c76358968ea
 
-# Example below code:
+# Example code for list directory:
 # entries = listdir('sort_folder')
 # print(type(entries[0]))
 # print(entries) # Example code for listdir which creates a list
 # print(os.path.abspath('sort_folder')) Example to show absolute file directory path
 
 def sort_folder(mypath):
-    # creation of the absolute directory where to organize files(which is in variable mypath)
-    # path = '/Users/HomeFolder/'
-    # mypath = path + 'Desktop/Python Organize test'  # For testing purposes
-    # mypath = path + 'Downloads'
-    # Finds files only within the desired folder
-    # f represents the name of the file in string
-    if os.path.isdir(mypath): #Confirm if mypath is an existing directory
-        onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-        if '.DS_Store' in onlyfiles:
-            onlyfiles.remove('.DS_Store')
+    # Confirm if mypath is an existing directory
+    if os.path.isdir(mypath):
+        #Extracts only files and discludes system files that start with .
+        onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
         print("Files contained in the organizing folder:")
         print(onlyfiles)
         # Finds the all the unique file type within the organizing folder
         filetype = []  # Empty list for storage
         for f in onlyfiles:
-            # print(f.rfind('.'))
-            if f.find('.') != -1:
-                # print(f.split('.', f.rfind('.'))[1])
-                temp = f.split('.', f.rfind('.'))
-                if len(temp) != 1 and temp[1] not in filetype:
-                    filetype.append(f.split('.', f.rfind('.'))[1])
+            # print(f.split('.', f.rfind('.'))[1])
+            temp = f.split('.', f.rfind('.'))
+            if len(temp) != 1 and temp[1] not in filetype:
+                filetype.append(f.split('.', f.rfind('.'))[1])
         print("Type of file in the organizing folder:")
         print(filetype)
         # Create a folder for each of the file type
@@ -70,11 +62,16 @@ def sort_folder(mypath):
         print("Finished!")
     else:
         print("Directory does not exist")
-        messagebox.showerror("Error","Directory does not exist")
+        messagebox.showerror("Error", "Directory does not exist")
 
-# Added a comment to test out the feature of committing
+sort_folder("/Users/HomeFolder/Desktop/Python Organize test")
 
-# to find Last element of a list  using rfind:
-# test = "meme.5.zip"
-# print(test.split('.', test.rfind('.')))
-# print(test.split('.', test.rfind('.'))[-1])
+def unpack_all(mypath):
+    if os.path.isdir(mypath):
+        onlyfiles = [f for f in listdir(mypath)]
+    else:
+        print("Directory does not exist")
+        messagebox.showerror("Error", "Directory does not exist")
+# print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
+
+# unpack_all("/Users/HomeFolder/Desktop/Python Organize test")
