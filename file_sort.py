@@ -58,7 +58,11 @@ def sort_folder(mypath):
                 print("Has been placed in :")
                 print(respective_folder)
                 print("")
+                try:
                 move(temp_location, respective_folder)
+                except:
+                messagebox.showerror("Error", "Files are overlapping or something else idk")
+
         print("Finished!")
     else:
         print("Directory does not exist")
