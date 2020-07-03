@@ -70,10 +70,10 @@ def sort_folder(mypath):
 
 def unpack_all(mypath):
     if os.path.isdir(mypath):
-        onlyfiles = [f for f in listdir(mypath)]
+        onlyfolders = [f for f in listdir(mypath) if isfile(join(mypath, f)) is False]
+        print(onlyfolders)
+
     else:
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 # print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
-
-# unpack_all("/Users/HomeFolder/Desktop/Python Organize test")
