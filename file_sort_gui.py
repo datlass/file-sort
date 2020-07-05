@@ -25,13 +25,19 @@ my_title = Label(root,text="Insert directory to organize")
 
 e = Entry()
 e.insert(0,"Input directory here")
-#Function to select the directory
+
+#Function to select the directory for the search button
+
 def askdir():
     e.delete(0,'end')
     folder = filedialog.askdirectory()
     print("This folder has been selected to sort: ")
     print(folder)
     e.insert(0,folder)
+
+my_button = Button(root, text="Search folder to organize", command= askdir,padx = widthx)
+
+#Function to select the directory for the organize button
 
 def organize():
     response = messagebox.askokcancel("Organize Folder","Are you sure you want to organize the folder?")
@@ -41,10 +47,6 @@ def organize():
         sort_folder(e.get())
     else:
         print("Ok no sort then :(")
-
-
-
-my_button = Button(root, text="Search folder to organize", command= askdir,padx = widthx)
 
 execute_ocd= Button(root, text="Organize this folder", command= organize)
 

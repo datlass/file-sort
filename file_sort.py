@@ -68,6 +68,7 @@ def sort_folder(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
+#Undo's sort_folder by extracting the files
 def unpack_all(mypath):
     if os.path.isdir(mypath):
         onlyfolders = [f for f in listdir(mypath) if isfile(join(mypath, f)) is False]
@@ -76,4 +77,5 @@ def unpack_all(mypath):
     else:
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
+
 # print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
