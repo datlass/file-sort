@@ -15,12 +15,18 @@ from tkinter import messagebox
 # print(type(entries[0]))
 # print(entries) # Example code for listdir which creates a list
 # print(os.path.abspath('sort_folder')) Example to show absolute file directory path
+def filesearch(mypath):
+    if os.path.isdir(mypath):
+        onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
+        return onlyfiles
+    else:
+        print("Error path is not valid")
 
 def sort_folder(mypath):
     # Confirm if mypath is an existing directory
     if os.path.isdir(mypath):
         #Extracts only files and discludes system files that start with .
-        onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
+        onlyfiles = filesearch(mypath)
         print("Files contained in the organizing folder:")
         print(onlyfiles)
         # Finds the all the unique file type within the organizing folder

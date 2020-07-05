@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import filedialog, messagebox
-from file_sort import sort_folder
+from file_sort import sort_folder, filesearch
+
 root = Tk()  # create window called root
 root.title("Dimas's Organizing Program")
 root.configure(background= '#ededed')
@@ -27,15 +28,22 @@ e = Entry()
 e.insert(0,"Input directory here")
 
 #Function to select the directory for the search button
-
+list_label = Label(root,text="Files within selected directory:")
+file_list = Listbox(root)
 def askdir():
     e.delete(0,'end')
     folder = filedialog.askdirectory()
     print("This folder has been selected to sort: ")
     print(folder)
     e.insert(0,folder)
+    file_list.delete(0,END)
+    if len(filesearch(folder)) != 0:
+        for file in filesearch(folder):
+            file_list.insert(END,file)
+    else:
+        file_list.insert(END,"No files in this folder")
 
-my_button = Button(root, text="Search folder to organize", command= askdir,padx = widthx)
+my_button = Button(root, text="Search folder to organize", command= askdir,padx = 10)
 
 #Function to select the directory for the organize button
 
@@ -52,9 +60,11 @@ execute_ocd= Button(root, text="Organize this folder", command= organize)
 
 
 #All the Elements
-my_title.grid(row=0,column=0)
-e.grid(row = 1,column = 0, padx = widthx)
-my_button.grid(row = 1,column = 1, padx = widthx)
-execute_ocd.grid(row = 1,column = 2, padx = widthx)
-
+my_title.grid(row=0,column=0, columnspan =3 )
+e.grid(row = 1,column = 0)
+my_button.grid(row = 1,column = 1)
+execute_ocd.grid(row = 1,column = 2)
+list_label.grid(row=3,column=0)
+file_list.config(width=50)
+file_list.grid(row=4,column=0, columnspan=3, padx = widthx)
 root.mainloop()
