@@ -22,10 +22,8 @@ widthx = 25
 
 #Adds title to the python window
 my_title = Label(root,text="Insert directory to organize")
-my_title.grid(row=0,column=0)
 
 e = Entry()
-e.grid(row = 1,column = 0,padx = widthx)
 e.insert(0,"Input directory here")
 #Function to select the directory
 def askdir():
@@ -47,9 +45,14 @@ def organize():
 
 
 my_button = Button(root, text="Search folder to organize", command= askdir,padx = widthx)
-my_button.grid(row = 1,column = 1)
 
 execute_ocd= Button(root, text="Organize this folder", command= organize)
-execute_ocd.grid(row = 2,column = 0)
+
+
+#All the Elements
+my_title.grid(row=0,column=0)
+e.grid(row = 1,column = 0, padx = widthx)
+my_button.grid(row = 1,column = 1, padx = widthx)
+execute_ocd.grid(row = 1,column = 2, padx = widthx)
 
 root.mainloop()
