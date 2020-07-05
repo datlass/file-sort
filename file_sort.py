@@ -22,10 +22,11 @@ def filesearch(mypath):
     else:
         print("Error path is not valid")
 
+
 def sort_folder(mypath):
     # Confirm if mypath is an existing directory
     if os.path.isdir(mypath):
-        #Extracts only files and discludes system files that start with .
+        # Extracts only files and discludes system files that start with .
         onlyfiles = filesearch(mypath)
         print("Files contained in the organizing folder:")
         print(onlyfiles)
@@ -74,7 +75,8 @@ def sort_folder(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-#Undo's sort_folder by extracting the files
+
+# Undo's sort_folder by extracting the files
 def unpack_all(mypath):
     if os.path.isdir(mypath):
         onlyfolders = [f for f in listdir(mypath) if isfile(join(mypath, f)) is False]
