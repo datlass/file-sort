@@ -65,20 +65,22 @@ execute_ocd = Button(root, text="Organize this folder", command=organize)
 
 #Adds a scrollbar to the frame and tell it to follow the listbox
 scrollbar = Scrollbar(frame)
-scrollbar.config(command = file_list.yview)
-scrollbar.grid( row=4, column=2 , columnspan=3,)
+#scrollbar.config(command = file_list.yview)
+#scrollbar.grid( row=4, column=2 , columnspan=3,)
 file_list.config(yscrollcommand = scrollbar.set)
+
+list_label.grid(row=0, column=0)
+scrollbar.grid(row=1, column=0,sticky='NSE')
+file_list.grid(row=1, column=0)
 
 # All the Elements
 my_title.grid(row=0, column=0, columnspan=3)
 e.grid(row=1, column=0)
 my_button.grid(row=1, column=1)
 execute_ocd.grid(row=1, column=2)
-#file_list.config(width=50)
-list_label.grid(row=3, column=0,pady=(0,25))
+file_list.config(width=50)
+#list_label.grid(row=3, column=0,pady=5)
 frame.grid(row=4, column=0, columnspan=3,pady=25)
-file_list.grid(row=4, column=0, columnspan=3,pady=25)
+#file_list.grid(row=4, column=0, columnspan=3)
 
-for i in range(100):
-    file_list.insert(END,"test file")
 root.mainloop()
