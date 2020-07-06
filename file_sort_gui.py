@@ -28,9 +28,9 @@ e = Entry()
 e.insert(0, "Input directory here")
 
 # Function to select the directory for the search button
-list_label = Label(root, text="Files within selected directory:")
-file_list = Listbox(root)
-
+frame = Frame(root,bg='gray')
+list_label = Label(frame, text="Files within selected directory:")
+file_list = Listbox(frame)
 
 def askdir():
     e.delete(0, 'end')
@@ -63,12 +63,22 @@ def organize():
 
 execute_ocd = Button(root, text="Organize this folder", command=organize)
 
+#Adds a scrollbar to the frame and tell it to follow the listbox
+scrollbar = Scrollbar(frame)
+scrollbar.config(command = file_list.yview)
+scrollbar.grid( row=4, column=2 , columnspan=3,)
+file_list.config(yscrollcommand = scrollbar.set)
+
 # All the Elements
 my_title.grid(row=0, column=0, columnspan=3)
 e.grid(row=1, column=0)
 my_button.grid(row=1, column=1)
 execute_ocd.grid(row=1, column=2)
-list_label.grid(row=3, column=0)
-file_list.config(width=50)
-file_list.grid(row=4, column=0, columnspan=3, padx=widthx)
+#file_list.config(width=50)
+list_label.grid(row=3, column=0,pady=(0,25))
+frame.grid(row=4, column=0, columnspan=3,pady=25)
+file_list.grid(row=4, column=0, columnspan=3,pady=25)
+
+for i in range(100):
+    file_list.insert(END,"test file")
 root.mainloop()
