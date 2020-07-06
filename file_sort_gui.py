@@ -64,13 +64,17 @@ def organize():
 execute_ocd = Button(root, text="Organize this folder", command=organize)
 
 #Adds a scrollbar to the frame and tell it to follow the listbox
-scrollbar = Scrollbar(frame)
+file_scroll_y = Scrollbar(frame)
+file_scroll_x = Scrollbar(frame, orient = HORIZONTAL)
 #scrollbar.config(command = file_list.yview)
 #scrollbar.grid( row=4, column=2 , columnspan=3,)
-file_list.config(yscrollcommand = scrollbar.set)
+file_list.config(yscrollcommand = file_scroll_y.set)
+file_list.config(xscrollcommand = file_scroll_x.set)
 
+#Organizes the listbox components within the frame using grid system
 list_label.grid(row=0, column=0)
-scrollbar.grid(row=1, column=0,sticky='NSE')
+file_scroll_y.grid(row=1, column=0,sticky='NSE')
+file_scroll_x.grid(row=1, column=0,sticky='SEW')
 file_list.grid(row=1, column=0)
 
 # All the Elements
