@@ -11,6 +11,7 @@ root.configure(background=mac_grey)
 # Gets the requested values of the height and width.
 windowWidth = root.winfo_reqwidth()
 windowHeight = root.winfo_reqheight()
+print("Window size of root gui")
 print("Width", windowWidth, "Height", windowHeight)
 
 # Gets both half the screen width/height and window width/height

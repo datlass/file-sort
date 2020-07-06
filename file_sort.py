@@ -11,10 +11,9 @@ from tkinter import messagebox
 # https://medium.com/better-programming/how-i-organise-my-downloads-folder-with-python-6c76358968ea
 
 # Example code for list directory:
-# entries = listdir('sort_folder')
-# print(type(entries[0]))
-# print(entries) # Example code for listdir which creates a list
-# print(os.path.abspath('sort_folder')) Example to show absolute file directory path
+
+#Mypath input is supposed to be an absolute directory to a folder
+#File search returns only files in a directory:
 def filesearch(mypath):
     if os.path.isdir(mypath):
         onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
@@ -75,9 +74,8 @@ def sort_folder(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-
-# Undo's sort_folder by extracting the files
-def unpack_all(mypath):
+#searches for folders only
+def foldersearch(mypath):
     if os.path.isdir(mypath):
         onlyfolders = [f for f in listdir(mypath) if isfile(join(mypath, f)) is False]
         print(onlyfolders)
@@ -86,4 +84,7 @@ def unpack_all(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-# print(listdir("/Users/HomeFolder/Desktop/Python Organize test"))
+foldersearch("/Applications")
+# Undo's sort_folder by extracting the files
+def unpack_all(mypath):
+    print("")
