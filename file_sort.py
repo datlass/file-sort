@@ -13,7 +13,7 @@ from tkinter import messagebox
 # Example code for list directory:
 
 #Mypath input is supposed to be an absolute directory to a folder
-#File search returns only files in a directory:
+#File search returns name of files in a directory:
 def filesearch(mypath):
     if os.path.isdir(mypath):
         onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
@@ -21,6 +21,13 @@ def filesearch(mypath):
     else:
         print("Error path is not valid")
 
+#Searches for the directory of the files within a directory
+def filedirsearch(mypath):
+    if os.path.isdir(mypath):
+        onlyfiles = [mypath+"/"+f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
+        return onlyfiles
+    else:
+        print("Error path is not valid")
 
 def sort_folder(mypath):
     # Confirm if mypath is an existing directory
@@ -74,17 +81,28 @@ def sort_folder(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-#searches for folders only
-def foldersearch(mypath):
+#returns directory to folders only within the current directory
+def folderdirsearch(mypath):
     if os.path.isdir(mypath):
-        onlyfolders = [f for f in listdir(mypath) if isfile(join(mypath, f)) is False]
-        print(onlyfolders)
-
+        onlyfolders = [mypath+"/"+f for f in listdir(mypath) if isfile(join(mypath, f)) is False and f.find(".app")== -1]
+       # print(onlyfolders)
+        #print("length of directory: "+str(len(onlyfolders)))
+        return onlyfolders
     else:
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-foldersearch("/Applications")
-# Undo's sort_folder by extracting the files
-def unpack_all(mypath):
-    print("")
+print(len(folderdirsearch("/Users/HomeFolder/Desktop/Python Organize test")))
+
+#Undo's sort_folder by extracting the files
+def findallfiles(mypath):
+    #
+    allfileslocation = filedirsearch(mypath)
+    folders = folderdirsearch(mypath)
+    for folder in folders:
+        morefiles = filedirsearch(folder)
+        for file in morefiles:
+            allfileslocation.append(file)
+    return allfileslocation
+
+print(findallfiles("/Users/HomeFolder/Desktop/Python Organize test"))
