@@ -92,17 +92,22 @@ def folderdirsearch(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-print(len(folderdirsearch("/Users/HomeFolder/Desktop/Python Organize test")))
+#print(len(folderdirsearch("/Users/HomeFolder/Desktop/Python Organize test")))
 
-#Undo's sort_folder by extracting the files
-def findallfiles(mypath):
-    #
-    allfileslocation = filedirsearch(mypath)
+#Finds all folders within given directory
+def findallfolders(mypath):
     folders = folderdirsearch(mypath)
     for folder in folders:
-        morefiles = filedirsearch(folder)
-        for file in morefiles:
-            allfileslocation.append(file)
-    return allfileslocation
+        folders =folders + folderdirsearch(folder)
+        #If there is a folder in a folder in the directory
+        if len(folderdirsearch(folder)) != 0:
+            additionalfolder = findallfolders(folder)
+            additionalfolder.pop(0)
+            folders = folders+additionalfolder
 
-print(findallfiles("/Users/HomeFolder/Desktop/Python Organize test"))
+    return folders
+
+def findallfiles(mypath):
+    allfolders = findallfolders(mypath)
+
+print(findallfolders("/Users/HomeFolder/Desktop/Python Organize test"))
