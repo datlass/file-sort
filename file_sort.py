@@ -114,6 +114,7 @@ def findallfiles(mypath):
         allfiles = allfiles+filedirsearch(folder)
     return allfiles
 
+#Note the unpack doesn't delete the folders just empties them
 def unpack_all(mypath):
     if os.path.isdir(mypath):
         allfilestomove =findallfiles(mypath)
