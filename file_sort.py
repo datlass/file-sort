@@ -115,15 +115,19 @@ def findallfiles(mypath):
     return allfiles
 
 def unpack_all(mypath):
-    allfilestomove =findallfiles(mypath)
-    for file in allfilestomove:
-        try:
-            move(file,mypath)
-        except:
-            print("Error moving: "+file)
-            print("to: " + mypath)
-           # messagebox.showerror("Error", "Error moving files? perhaps overlapping")
-    print("Done moving")
+    if os.path.isdir(mypath):
+        allfilestomove =findallfiles(mypath)
+        for file in allfilestomove:
+            try:
+                move(file,mypath)
+            except:
+                print("Error moving: "+file)
+                print("to: " + mypath)
+                #messagebox.showerror("Error", "Error moving files? perhaps overlapping")
+        print("Done moving")
+    else:
+        print("Error path inputted not valid")
+
 
 #testpath ="/Users/HomeFolder/Desktop/Python Organize test"
 # print(findallfolders(testpath))

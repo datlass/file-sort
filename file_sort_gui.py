@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog, messagebox
-from file_sort import sort_folder, filesearch
+from file_sort import sort_folder, filesearch,unpack_all
 
 root = Tk()  # create window called root
 root.title("Dimas's Organizing Program")
@@ -52,7 +52,7 @@ def askdir():
 my_button = Button(root, text="Search folder to organize", command=askdir, padx=10)
 
 
-# Function to select the directory for the organize button
+#Function to select the directory for the organize button
 
 def organize():
     response = messagebox.askokcancel("Organize Folder", "Are you sure you want to organize the folder?")
@@ -63,8 +63,20 @@ def organize():
     else:
         print("Ok no sort then :(")
 
+#Function to undo the packing
+
+def unpack():
+    response = messagebox.askokcancel("Organize Folder", "Are you sure you want to organize the folder?")
+    print("Input:" + str(response))
+    if response is True:
+        print("Ok then unpacking all")
+        unpack_all(e.get())
+    else:
+        print("Ok no sort then :(")
+
 
 execute_ocd = Button(root, text="Organize this folder", command=organize)
+undo_ocd = Button(root, text="Undo's the packing", command=unpack)
 
 #Adds a scrollbar to the frame and tell it to follow the listbox
 file_scroll_y = Scrollbar(frame)
@@ -89,6 +101,7 @@ my_title.grid(row=0, column=0, columnspan=3,pady=(10,5))
 e.grid(row=1, column=0)
 my_button.grid(row=1, column=1)
 execute_ocd.grid(row=1, column=2)
+undo_ocd.grid(row=1,column=3)
 file_list.config(width=35)
 #list_label.grid(row=3, column=0,pady=5)
 frame.grid(row=4, column=0, columnspan=3,pady=25)
