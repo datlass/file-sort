@@ -108,6 +108,24 @@ def findallfolders(mypath):
     return folders
 
 def findallfiles(mypath):
+    allfiles = filedirsearch(mypath)
     allfolders = findallfolders(mypath)
+    for folder in allfolders:
+        allfiles = allfiles+filedirsearch(folder)
+    return allfiles
 
-print(findallfolders("/Users/HomeFolder/Desktop/Python Organize test"))
+def unpack_all(mypath):
+    allfilestomove =findallfiles(mypath)
+    for file in allfilestomove:
+        try:
+            move(file,mypath)
+        except:
+            print("Error moving: "+file)
+            print("to: " + mypath)
+           # messagebox.showerror("Error", "Error moving files? perhaps overlapping")
+    print("Done moving")
+
+#testpath ="/Users/HomeFolder/Desktop/Python Organize test"
+# print(findallfolders(testpath))
+# print(findallfiles(testpath))
+#unpack_all(testpath)
