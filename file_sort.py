@@ -12,8 +12,8 @@ from tkinter import messagebox
 
 # Example code for list directory:
 
-#Mypath input is supposed to be an absolute directory to a folder
-#File search returns name of files in a directory:
+# Mypath input is supposed to be an absolute directory to a folder
+# File search returns name of files in a directory:
 def filesearch(mypath):
     if os.path.isdir(mypath):
         onlyfiles = [f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
@@ -21,13 +21,16 @@ def filesearch(mypath):
     else:
         print("Error path is not valid")
 
-#Searches for the directory of the files within a directory
+
+# Searches for the directory of the files within a directory
 def filedirsearch(mypath):
     if os.path.isdir(mypath):
-        onlyfiles = [mypath+"/"+f for f in listdir(mypath) if f.startswith('.') is False and isfile(join(mypath, f))]
+        onlyfiles = [mypath + "/" + f for f in listdir(mypath) if
+                     f.startswith('.') is False and isfile(join(mypath, f))]
         return onlyfiles
     else:
         print("Error path is not valid")
+
 
 def sort_folder(mypath):
     # Confirm if mypath is an existing directory
@@ -81,56 +84,60 @@ def sort_folder(mypath):
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-#returns directory to folders only within the current directory
+
+# returns directory to folders only within the current directory
 def folderdirsearch(mypath):
     if os.path.isdir(mypath):
-        onlyfolders = [mypath+"/"+f for f in listdir(mypath) if isfile(join(mypath, f)) is False and f.find(".app")== -1]
-       # print(onlyfolders)
-        #print("length of directory: "+str(len(onlyfolders)))
+        onlyfolders = [mypath + "/" + f for f in listdir(mypath) if
+                       isfile(join(mypath, f)) is False and f.find(".app") == -1]
+        # print(onlyfolders)
+        # print("length of directory: "+str(len(onlyfolders)))
         return onlyfolders
     else:
         print("Directory does not exist")
         messagebox.showerror("Error", "Directory does not exist")
 
-#print(len(folderdirsearch("/Users/HomeFolder/Desktop/Python Organize test")))
 
-#Finds all folders within given directory
+# print(len(folderdirsearch("/Users/HomeFolder/Desktop/Python Organize test")))
+
+# Finds all folders within given directory
 def findallfolders(mypath):
     folders = folderdirsearch(mypath)
     for folder in folders:
-        folders =folders + folderdirsearch(folder)
-        #If there is a folder in a folder in the directory
+        folders = folders + folderdirsearch(folder)
+        # If there is a folder in a folder in the directory
         if len(folderdirsearch(folder)) != 0:
             additionalfolder = findallfolders(folder)
             additionalfolder.pop(0)
-            folders = folders+additionalfolder
+            folders = folders + additionalfolder
 
     return folders
+
 
 def findallfiles(mypath):
     allfiles = filedirsearch(mypath)
     allfolders = findallfolders(mypath)
     for folder in allfolders:
-        allfiles = allfiles+filedirsearch(folder)
+        allfiles = allfiles + filedirsearch(folder)
     return allfiles
 
-#Note the unpack doesn't delete the folders just empties them
+
+# Note the unpack doesn't delete the folders just empties them
 def unpack_all(mypath):
     if os.path.isdir(mypath):
-        allfilestomove =findallfiles(mypath)
+        allfilestomove = findallfiles(mypath)
         for file in allfilestomove:
             try:
-                move(file,mypath)
+                move(file, mypath)
             except:
-                print("Error moving: "+file)
+                print("Error moving: " + file)
                 print("to: " + mypath)
-                #messagebox.showerror("Error", "Error moving files? perhaps overlapping")
+                # messagebox.showerror("Error", "Error moving files? perhaps overlapping")
         print("Done moving")
     else:
         print("Error path inputted not valid")
 
-
-#testpath ="/Users/HomeFolder/Desktop/Python Organize test"
+# testpath ="/Users/HomeFolder/Desktop/Python Organize test"
 # print(findallfolders(testpath))
 # print(findallfiles(testpath))
-#unpack_all(testpath)
+# unpack_all(testpath)
